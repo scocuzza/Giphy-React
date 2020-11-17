@@ -24,14 +24,15 @@ class Search extends Component {
     getGiphy = () => {
         const apikey = '10xqoqDRPJ0A1loNX9D0RFKCbLmhD0Pm'
         let userInput = this.props.userInput
-        let response = axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${userInput}`, {headers: {
+        let response = axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${userInput}`, 
+        {headers: {
             'Content-Type': 'application/json'
         }})
             .then((response) => {
                 console.log('Giphy', response);
-                console.log(response.data.data[1].url);
+                console.log(response.data.data[0].images.downsized.url);
                 this.setState({
-                    giphyUrl: response.data.data[1].url
+                    giphyUrl: response.data.data[0].images.downsized.url
                 })
             })
             .catch((error) => {
